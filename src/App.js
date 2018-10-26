@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
-import Navbar from './src/Components/Navbar/Navbar';
+import './App.scss';
+import Navbar from './Components/Navbar/Navbar';
 import Signup from './Components/Signup/Signup';
 
 
