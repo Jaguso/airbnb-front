@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+// import './style.scss';
+import { createUser } from '../../services'; //OBS: si algo tiene el nombre index, lo llama por default cuando llamamos a la carpeta donde está
 
 class Signup extends Component{
   
@@ -22,14 +24,20 @@ class Signup extends Component{
   }
 
   validPasswords = () => {
-    const {passord, checkPassword} = this.state
-    return passord === checkPassword; 
+    const {password, checkPassword} = this.state
+    return password === checkPassword; 
   }
 
-  onSubmit = (event) => {
+  onSubmit = async (event) => {
     event.preventDefault();
+
     if(this.validPasswords()){
-      // mandar data 
+      let response = {}
+      response = await createUser(this.state).catch(({response}) => alert(response.data.error.errors[0].message))
+      if(response) {
+        console.log(response.data.id)
+      }
+
     } else{
       alert("Los passwords no coinciden")
     }
@@ -38,7 +46,7 @@ class Signup extends Component{
   }
 
   render() {
-    const {name, lastname, passord, email, checkPassword} = this.state
+    const {name, lastname, password, email, checkPassword} = this.state
     return(
       <div className="row justify-content-center">
         <div className="col-md-10">
@@ -56,7 +64,7 @@ class Signup extends Component{
                   <input type="text" name="lastname" 
                     className="form-control" value={lastname}
                     onChange={this.onChangeInput}
-                    />
+                  />
                 </div>
               </div>
               <div className="row justify-content-center">
@@ -66,7 +74,7 @@ class Signup extends Component{
                 </div>
                 <div className="col-md-10 form-group">
                   <label htmlFor="">Tu Password:</label>
-                  <input type="password" name="password" className="form-control" value={passord} onChange={this.onChangeInput}/>
+                  <input type="password" name="password" className="form-control" value={password} onChange={this.onChangeInput}/>
                 </div>
                 <div className="col-md-10 form-group">
                   <label htmlFor="">Confirma tu password:</label>
