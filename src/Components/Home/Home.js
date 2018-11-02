@@ -34,9 +34,9 @@ class Home extends Component {
 
   render(){
     return (
-      <div className="row">
+      <div>
         <h2 className="mb-4">Todas las casas </h2>
-        <div className="mt-4">
+        <div className="row">
           {
             (this.state.isLoading) ? (<h4>Cargando...</h4>) : this.renderHouses()
           }
