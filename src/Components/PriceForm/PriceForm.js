@@ -30,7 +30,10 @@ class PriceForm extends Component {
   }
 
   nextStep = () => {
-    // guarda en redux y va al siguiente paso
+    // guarda en redux y va al siguiente paso (esto hace que cuando aceptemos, el nuevo estado se añada al store)
+    const {dispatch, history, match} = this.props
+    dispatch(addPrice(this.state)) //dispatch llama a las acciones
+    // history.push(`/checkout/buy/${match.params}`)
   }
 
   render = () => {
@@ -38,7 +41,7 @@ class PriceForm extends Component {
       <div className="row justify-content-center">
         <div className="col-md-10 text-center">
           <h5>Precio: {this.state.price || 0.0} MXN</h5>
-          <button className="btn btn-info">Aceptar</button>
+          <button className="btn btn-info" onClick={this.nextStep}>Aceptar</button>
         </div>
 
       </div>
