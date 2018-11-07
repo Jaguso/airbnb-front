@@ -9,15 +9,16 @@ import Login from './Components/Login/Login';
 import Home from './Components/Home/Home';
 import FormHouse from './Components/FormHouse/FormHouse';
 import DetailHouse from './Components/DetailHouse/DetailHouse';
-import FormDate from './Components/DateForm/DateForm';
+import DateForm from './Components/DateForm/DateForm';
+import PriceForm from './Components/PriceForm/PriceForm';
 
 //redux
 import {createStore} from 'redux';
 import rootReducer from './reducers';
 import {Provider} from 'react-redux';
-import DateForm from './Components/DateForm/DateForm';
 
-const store = createStore(rootReducer);
+//al agregar la segunda entrada de createStore, reduxDevTools tiene que empezar a funcionar
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 //lo siguiente es para que redirija a login si el usuario no está autenticado 
 const PrivateRoute = ({component: Component, ...rest}) => (
@@ -49,7 +50,7 @@ class Routes extends Component{
               <PrivateRoute exact path="/house/create" component={FormHouse} />
               <PrivateRoute exact path="/logout" component={Logout} />
               <PrivateRoute exact path="/checkout/date/:id" component={DateForm} />
-
+              <PrivateRoute exact path="/checkout/price/:id" component={PriceForm} />
               <Route exact path="/house/:id" component={DetailHouse} />
             </div>
           </main>

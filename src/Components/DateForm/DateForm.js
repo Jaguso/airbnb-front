@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Calendar from 'react-calendar';
+import {addDates} from '../../actions';
+import {connect} from 'react-redux';
 
 
 class DateForm extends Component {
@@ -15,7 +17,9 @@ class DateForm extends Component {
 
   nextStep = () => {
     //Envía data al store y pasa al siguiente estado
-
+    const {dispatch, history, match} = this.props
+    dispatch(addDates(this.state)) //dispatch manda ejecutar el reducer y le metemos un reducer (addDates)
+    history.push(`/checkout/price/${match.params.id}`) // esto es para que al darle en siguiente al calendario, nos mande al componente de precio
   }
 
   onChange = (dates) => {
@@ -47,4 +51,4 @@ class DateForm extends Component {
 }
 
 
-export default DateForm;
+export default connect()(DateForm);
