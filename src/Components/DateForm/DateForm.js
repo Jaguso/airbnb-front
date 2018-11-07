@@ -29,15 +29,16 @@ class DateForm extends Component {
 
   render() {
     return(
-      <div className="row justify-content-center">
-        <div className="col-md-10">
+      <div className="row justify-content-center mt-5">
+        <div className="col-md-10 text-center">
           <Calendar
             onChange={this.onChange}
             value={this.state.date}
             selectRange={true}
+            className="mx-auto"
           />
 
-          <button className="btn btn-info" onClick={this.nextStep}>Siguiente</button>
+          <button className="btn btn-info mt-3" onClick={this.nextStep}>Siguiente</button>
         </div>
       </div>
     )
