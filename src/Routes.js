@@ -35,7 +35,7 @@ class Routes extends Component{
 
   render(){
     return (
-      <Provider>
+      <Provider store={store}>
         <Router>
           <main>
             <Navbar/>
